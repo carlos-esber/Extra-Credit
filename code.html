@@ -5,10 +5,14 @@
 <button type="button" id="myrecord_start" > Start New Recording </button>
 <button type="button" id="my_Savedata" > Save Date as CSV - File </button>
 
+npm install low-pass-filter
+  
 <script src="https://www.puck-js.com/puck.js"></script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://unpkg.com/low-pass-filter"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.css" />
+
 
 </head>
 <body>
@@ -28,6 +32,9 @@ data.push([t, 1000.000]);
 var date_win_min = t.getTime();
 var date_win_max = date_win_min + 2*taxis_increment;
 
+  
+  
+  
 var g = new Dygraph(document.getElementById("div_g"), data,
 {
 drawPoints: true,
@@ -48,7 +55,23 @@ date_win_min += taxis_increment;
 date_win_max += taxis_increment;
 g.updateOptions( { dateWindow : [date_win_min, date_win_max] } );
 };
-data.push([x, y]);
+  
+
+  
+/**
+ * Low pass filter.
+ * @param {!Array<number>|TypedArray} samples The samples.
+ * @param {number} cutoff The cutoff frequency.
+ * @param {number} sampleRate The sample rate.
+ * @param {number} numChannels The number of channels.
+ */
+function lowPassFilter(data, 5, 100, 1) {
+  
+  return data;
+
+}
+  data.push([x, y]);
+  
 g.updateOptions( { 'file': data } );
 };
 }
