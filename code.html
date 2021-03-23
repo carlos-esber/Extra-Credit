@@ -65,6 +65,9 @@ g.updateOptions( { dateWindow : [date_win_min, date_win_max] } );
  * @param {number} sampleRate The sample rate.
  * @param {number} numChannels The number of channels.
  */
+  
+const lowPassFilter = require('low-pass-filter').lowPassFilter;
+  
 function lowPassFilter(data, 0.4, 100, 1) {
   
   return data;
