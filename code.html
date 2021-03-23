@@ -75,7 +75,9 @@ function lowPassFilter(data, 0.4, 100, 1) {
 }
   data.push([x, y]);
   
+  if ((data.length&15)==15){
 g.updateOptions( { 'file': data } );
+  }
 };
 }
 
@@ -87,7 +89,7 @@ rec_flag = false;
 connection.write("clearInterval(1)\n", function() { });
 } else {
 data.splice(0,data.length);
-connection.write("setInterval(function(){Bluetooth.println(resprate().toFixed(3));} ,20); \n", function() { });
+connection.write("setInterval(function(){Bluetooth.println(resprate().toFixed(3));} ,10); \n", function() { });
 t = new Date();
 start_time = t;
 var date_win_min = t.getTime();
